@@ -3,9 +3,13 @@ package main
 import (
 	"fmt"
 	"unicode"
+
+	"github.com/pkg/profile"
 )
 
 func main() {
+	defer profile.Start(profile.MemProfile, profile.MemProfileRate(100000000000), profile.ProfilePath(".")).Stop()
+
 	h := NewSymbolHandler(
 		NewCharacterHandler(
 			NewDigitHandler(nil)))
